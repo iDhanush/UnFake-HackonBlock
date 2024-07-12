@@ -1,0 +1,81 @@
+.grp-v{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-v{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    gap: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e4e5;
+    padding: 10px;
+    text-align: left;
+}
+
+.i-content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.i-head{
+    font-size: 14px;
+}
+
+.grp-p{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.i-price{
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    gap: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e4e5;
+    padding: 10px;
+    text-align: left;
+}
+
+.input-price{
+    width: 50px;
+    height: 100%;
+    outline: none;
+    border: none;
+    overflow-x: auto;
+    color: var(--txt);
+    text-align: right;
+}
+
+.plat-fee{
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    gap: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e4e5;
+    padding: 10px;
+    text-align: left;
+}
+
+.total{
+    height: 40px;
+    background: var(--fade);
+
+    input{
+        background-color: transparent;
+    }
+}
