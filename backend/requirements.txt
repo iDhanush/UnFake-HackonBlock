@@ -1,3 +1,6 @@
 fastapi
 requests
 brownie
+motor
+pymongo
+pymongo[srv]
