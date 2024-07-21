@@ -15,7 +15,6 @@ import ResultPage from "./pages/ResultPage/ResultPage";
 function App() {
   return (
     <StoreProvider>
-      
       <div className="app">
         <div>
           <Toaster position="bottom-right" reverseOrder={false} />
