@@ -1,2 +1,3 @@
-from backend.routers import auth_router
+from fastapi import APIRouter
 
+auth_router = APIRouter(tags=['auth'])
