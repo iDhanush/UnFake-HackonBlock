@@ -25,6 +25,8 @@ const ResultPage = () => {
     setCertiId,
     prediction,
     setPrediction,
+    wallet,
+    setWallet,
   } = useStore();
 
   const navigate = useNavigate();
@@ -37,6 +39,8 @@ const ResultPage = () => {
       setProvider(window.ethereum);
     }
   }, []);
+
+  // console.log(wallet);
   const requestAccount = async () => {
     if (provider) {
       try {
@@ -127,7 +131,7 @@ const ResultPage = () => {
               </div>
             </div>
             <div className="btns">
-              {certiId ? (
+              {wallet ? (
                 <button
                   className="cssbuttons-io-button"
                   onClick={() => {
