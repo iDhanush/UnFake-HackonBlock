@@ -8,6 +8,7 @@
     border: 2px dashed var(--primary);
     border-radius: 10px;
     padding: 40px;
+    color: #fff;
 
     svg{
         margin-top: -20px;
@@ -28,9 +29,17 @@ input[type="file"]{
 }
 
 .preview{
-    width: 380px;
+    width: 280px;
     height: 240px;
     border-radius: 20px;
     margin-top: 10px;
     z-index: 100;
+}
+
+.upload-preview-grp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }

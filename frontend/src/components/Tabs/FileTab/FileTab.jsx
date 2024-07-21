@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useStore } from "../../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
-import {baseUrl} from '../../../constant.js'
+import { baseUrl } from "../../../constant.js";
 
 const FileTab = () => {
   const { finalResult, setFinalResult, setImageSet, imageSet } = useStore();
@@ -122,7 +122,7 @@ const FileTab = () => {
               src={`${baseUrl}/dwd/${item}`}
               alt="shot-img"
               className="img-shot"
-              onClick={()=>imageRedirect(item)}
+              onClick={() => imageRedirect(item)}
             ></img>
           ))}
         </div>
@@ -165,13 +165,13 @@ const FileTab = () => {
                 {/* Your upload SVG icon and text here */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width={64}
-                  height={65}
+                  width={66}
+                  height={44}
                   fill="none"
                 >
                   <path
-                    fill="#007AFF"
-                    d="M51.6 27.273c-1.813-9.2-9.893-16.106-19.6-16.106-7.707 0-14.4 4.373-17.733 10.773C6.24 22.793 0 29.593 0 37.833c0 8.827 7.173 16 16 16h34.667C58.027 53.833 64 47.86 64 40.5c0-7.04-5.467-12.747-12.4-13.227m-14.267 7.894v10.666H26.667V35.167h-8l12.4-12.4a1.32 1.32 0 0 1 1.893 0l12.373 12.4z"
+                    fill="#7879F1"
+                    d="M53.213 16.61C51.343 7.123 43.01 0 33 0c-7.948 0-14.85 4.51-18.287 11.11C6.434 11.99 0 19.003 0 27.5 0 36.603 7.398 44 16.5 44h35.75C59.84 44 66 37.84 66 30.25c0-7.26-5.638-13.145-12.788-13.64M52.25 38.5H16.5c-6.078 0-11-4.922-11-11 0-5.637 4.208-10.34 9.79-10.917l2.943-.303 1.375-2.613C22.22 8.636 27.335 5.5 33 5.5c7.205 0 13.42 5.115 14.822 12.183l.825 4.125 4.208.302c4.29.275 7.645 3.878 7.645 8.14 0 4.538-3.712 8.25-8.25 8.25M22 24.75h7.012V33h7.975v-8.25H44l-11-11z"
                   />
                 </svg>
 

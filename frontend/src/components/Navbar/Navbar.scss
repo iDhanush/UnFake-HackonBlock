@@ -1,12 +1,12 @@
 .nav {
   width: 100%;
-  padding: 0px 40px;
+  padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   a {
-    color: var(--dark);
+    color: #fff;
     text-decoration: none;
     font-size: 14px;
   }
@@ -16,6 +16,7 @@
     align-items: center;
     font-weight: 600;
     font-size: 20px;
+    color: #fff;
 
     .col {
       color: var(--primary);
