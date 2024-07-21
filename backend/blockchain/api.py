@@ -1,21 +1,18 @@
 import os
-import json
 import dotenv
-from brownie import project, network, config, accounts, web3
+from brownie import project, network, accounts
 from brownie.network.account import LocalAccount
 from brownie.project import get_loaded_projects
 from fastapi import APIRouter
-from pydantic import BaseModel
 
-from web3.datastructures import AttributeDict
-
+bchain_router = APIRouter(tags=['bchain'])
 dotenv.load_dotenv()
-blockchn_router = APIRouter(tags=['crypto'])
 
-p = project.load('crypto')
+p = project.load('blockchain/brown')
+
 network.connect('sepolia')
 # Get the deployed contracts
-FundMe = p.FundMe
+# FundMe = p.FundMe
 SimpleCollectible = p.SimpleCollectible
 
 get_loaded_projects()[0].load_config()
@@ -30,16 +27,11 @@ def get_account() -> LocalAccount:
 account = get_account()
 print(account)
 
-if len(FundMe) > 0:
-    fund_me = FundMe[-1]
-else:
-    print("FundMe not deployed yet on Sepolia")
-
-simple_collectible = SimpleCollectible[-1]
+simple_collectible = SimpleCollectible.deploy({"from":account})
 
 account = get_account()
 
 
-@blockchn_router.post('/mint_certificate/')
+@bchain_router.post('/mint_certificate/')
 async def mint_certificate():
     pass

@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
+from auth.api import auth_router
+from blockchain.api import bchain_router
+
 app = FastAPI()
 
 app.add_middleware(
@@ -12,5 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/dwd", StaticFiles(directory="backend/assets"), name="download")
+app.mount("/dwd", StaticFiles(directory="assets"), name="download")
+app.include_router(auth_router)
+app.include_router(bchain_router)
 # uvicorn.run(app, host="localhost", port=8000)
