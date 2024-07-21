@@ -4,13 +4,14 @@ from brownie import project, network, accounts
 from brownie.network.account import LocalAccount
 from brownie.project import get_loaded_projects
 from fastapi import APIRouter
+from web3 import Web3
 
 bchain_router = APIRouter(tags=['bchain'])
 dotenv.load_dotenv()
 
 p = project.load('blockchain/brown')
 
-network.connect('sepolia')
+network.connect('polygon-zkevm-test2')
 # Get the deployed contracts
 # FundMe = p.FundMe
 SimpleCollectible = p.SimpleCollectible
@@ -27,7 +28,7 @@ def get_account() -> LocalAccount:
 account = get_account()
 print(account)
 
-simple_collectible = SimpleCollectible.deploy({"from":account})
+simple_collectible = SimpleCollectible.deploy({"from": account, "gas_price": Web3.to_wei("20", "gwei")})
 
 account = get_account()
 
