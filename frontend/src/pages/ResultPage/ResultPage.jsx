@@ -105,7 +105,7 @@ const ResultPage = () => {
                 <div className="result-grp-name">Fake</div>
                 <Progress.Circle
                   percent={Math.round(finalResult?.fake * 100)} // Set the percentage value
-                  strokeColor={"#0072FA"} // Set the stroke color
+                  strokeColor={"rgba(132,116,254,1)"} // Set the stroke color
                   strokeWidth={10} // Set the stroke width
                   trailWidth={10} // Set the trail width (background)
                   style={customProgressBarStyle}
@@ -117,7 +117,7 @@ const ResultPage = () => {
                 <div className="result-grp-name">Real</div>
                 <Progress.Circle
                   percent={Math.round(finalResult?.real * 100)} // Set the percentage value
-                  strokeColor={"#0072FA"} // Set the stroke color
+                  strokeColor={"rgba(132,116,254,1)"} // Set the stroke color
                   strokeWidth={10} // Set the stroke width
                   trailWidth={10} // Set the trail width (background)
                   style={customProgressBarStyle}
@@ -129,16 +129,19 @@ const ResultPage = () => {
             <div className="btns">
               {certiId ? (
                 <button
-                  className="certi-btn"
+                  className="cssbuttons-io-button"
                   onClick={() => {
                     navigate("/certification");
                   }}
                 >
-                  Get certificate
+                  <span>Get Certificate</span>
                 </button>
               ) : (
-                <button className="certi-btn" onClick={requestAccount}>
-                  Connect wallet and Get certificate
+                <button
+                  className="cssbuttons-io-button"
+                  onClick={requestAccount}
+                >
+                  <span>Connect wallet</span>
                 </button>
               )}
             </div>
