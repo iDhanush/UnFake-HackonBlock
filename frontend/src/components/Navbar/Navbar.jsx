@@ -25,6 +25,7 @@ const Navbar = ({ page }) => {
         setWalletAddress(accounts[0]);
         setWallet(accounts[0]);
         console.log(accounts[0]);
+        localStorage.setItem("wallet", accounts[0]);
       } catch (err) {
         console.error("Error:", err);
       }
@@ -50,9 +51,21 @@ const Navbar = ({ page }) => {
         </ul>
 
         {wallet ? (
-          <div className="wallet">
-            <img src={META} alt="" />
-            {wallet.substring(0, 8)}xxxxx
+          <div className="btns">
+            <div className="wallet">
+              <img src={META} alt="" />
+              {wallet.substring(0, 8)}xxxxx
+            </div>
+            <button
+              className="cssbuttons-io-button"
+              onClick={() => {
+                localStorage.clear();
+                location.reload();
+              }}
+              style={{ gap: "10px" }}
+            >
+              <span>Logout</span>
+            </button>
           </div>
         ) : (
           <button

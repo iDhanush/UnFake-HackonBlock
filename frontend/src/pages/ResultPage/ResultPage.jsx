@@ -49,6 +49,7 @@ const ResultPage = () => {
         });
         setWalletAddress(accounts[0]);
         console.log(accounts[0]);
+        localStorage.setItem("wallet", accounts[0]);
 
         // Proceed with the transaction
         const tid = await sendEth(accounts[0]);
