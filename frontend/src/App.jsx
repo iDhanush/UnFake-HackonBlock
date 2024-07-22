@@ -26,7 +26,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/certification" element={<Certificate />} />
           <Route path="/result" element={<ResultPage />} />
-          <Route path="/ntf" element={<Nft />} />
+          <Route path="/nft" element={<Nft />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>

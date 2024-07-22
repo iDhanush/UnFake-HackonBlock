@@ -1,0 +1,72 @@
+.nft-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+
+  .sec-head {
+    font-size: 40px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .nft-list{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .nft-card {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid rgba(220, 220, 220, 0.29);
+    background: linear-gradient(
+      107deg,
+      rgba(126, 126, 126, 0.16) 1.44%,
+      rgba(126, 126, 126, 0.14) 108.41%
+    );
+  }
+  .certi-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .certi-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+  .view-btn {
+    position: absolute;
+    color: #fff;
+    border-radius: 20px;
+    background: rgba(13, 13, 13, 0.52);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .card-name{
+    color: #fff;
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+  .view-poly-btn{
+    width: 100%;
+    height: 50px;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+}

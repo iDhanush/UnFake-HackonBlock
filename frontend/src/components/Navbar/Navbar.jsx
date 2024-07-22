@@ -39,7 +39,7 @@ const Navbar = ({ page }) => {
 
         <ul className="navlinks">
           <li>
-            <NavLink to="/">My certificates</NavLink>
+            <NavLink to="/nft">My certificates</NavLink>
           </li>
           <li>
             <NavLink to="/pricing">Pricing</NavLink>
