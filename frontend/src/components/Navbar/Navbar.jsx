@@ -39,13 +39,13 @@ const Navbar = ({ page }) => {
 
         <ul className="navlinks">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">My certificates</NavLink>
           </li>
           <li>
             <NavLink to="/pricing">Pricing</NavLink>
           </li>
           <li>
-            <NavLink to="/certification">Certification</NavLink>
+            {/* <NavLink to="/certification">Certification</NavLink> */}
           </li>
         </ul>
 

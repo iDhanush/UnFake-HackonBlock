@@ -11,6 +11,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Pricing from "./pages/Pricing/Pricing";
 import Certificate from "./pages/certificate/Certificate";
 import ResultPage from "./pages/ResultPage/ResultPage";
+import Nft from "./pages/NftList/Nft";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/certification" element={<Certificate />} />
           <Route path="/result" element={<ResultPage />} />
-          {/* <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/ntf" element={<Nft />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
