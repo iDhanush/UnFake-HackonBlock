@@ -3,6 +3,8 @@ import "./Navbar.scss";
 import { Link, NavLink } from "react-router-dom";
 import { useStore } from "../../context/StoreContext";
 
+import META from "../../assets/meta.svg";
+
 const Navbar = ({ page }) => {
   const { wallet, setWallet } = useStore();
   const [walletAddress, setWalletAddress] = useState(null);
@@ -44,14 +46,24 @@ const Navbar = ({ page }) => {
           <li>
             <NavLink to="/pricing">Pricing</NavLink>
           </li>
-          <li>
-            {/* <NavLink to="/certification">Certification</NavLink> */}
-          </li>
+          <li>{/* <NavLink to="/certification">Certification</NavLink> */}</li>
         </ul>
 
-        <button className="cssbuttons-io-button" onClick={requestAccount}>
-          <span>Connect wallet</span>
-        </button>
+        {wallet ? (
+          <div className="wallet">
+            <img src={META} alt="" />
+            {wallet.substring(0, 8)}xxxxx
+          </div>
+        ) : (
+          <button
+            className="cssbuttons-io-button"
+            onClick={requestAccount}
+            style={{ gap: "10px" }}
+          >
+            <img src={META} alt="" />
+            <span>Connect wallet</span>
+          </button>
+        )}
       </nav>
     </>
   );
