@@ -18,7 +18,6 @@ network.connect('polygon-zkevm-test2')
 # Get the deployed contracts
 # FundMe = p.FundMe
 SimpleCollectible = p.SimpleCollectible
-
 get_loaded_projects()[0].load_config()
 print(get_loaded_projects()[0])
 
@@ -27,7 +26,6 @@ def get_account() -> LocalAccount:
     return accounts.add(os.environ.get('PRIVATE_KEY'))
 
 
-# Now you can interact with your contracts
 account = get_account()
 print(account)
 
