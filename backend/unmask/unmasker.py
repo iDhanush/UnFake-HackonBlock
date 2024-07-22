@@ -26,28 +26,15 @@ model = InceptionResnetV1(
     device=DEVICE
 )
 
-checkpoint = torch.load("resnetinceptionv1_epoch_32.pth", map_location=torch.device('cpu'))
-model.load_state_dict(checkpoint['model_state_dict'])
-model.to(DEVICE)
-model.eval()
 
-with open('model_pickle.pkl', 'wb') as f:
-    pickle.dump(model, f)
-
-with open('model_pickle.pkl', 'rb') as f:
-    model = pickle.load(f)
-
-
-def predict(input_image: Image.Image):
+def unmask_image(input_image: Image.Image):
     """Predict the label of the input_image"""
     face = mtcnn(input_image)
     if face is None:
         raise Exception('No face detected')
     face = face.unsqueeze(0)  # add the batch dimension
     face = F.interpolate(face, size=(256, 256), mode='bilinear', align_corners=False)
-    model = None
-    with open('model_pickle.pkl', 'rb') as f:
-        model = pickle.load(f)
+
     # convert the face into a numpy array to be able to plot it
     prev_face = face.squeeze(0).permute(1, 2, 0).cpu().detach().int().numpy()
     prev_face = prev_face.astype('uint8')
@@ -78,7 +65,7 @@ def predict(input_image: Image.Image):
             'real': real_prediction,
             'fake': fake_prediction
         }
-    return confidences, face_with_mask
+    return confidences
 
 
-print(predict(Image.open("../assets/RhbElbYebs.jpg")))
+print(unmask_image(Image.open("../assets/RhbElbYebs.jpg")))
