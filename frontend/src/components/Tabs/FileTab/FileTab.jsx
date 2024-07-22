@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../../constant.js";
 
 const FileTab = () => {
-  const { finalResult, setFinalResult, setImageSet, imageSet } = useStore();
+  const { finalResult, setFinalResult, setImageSet, imageSet,wallet } = useStore();
   const [fid, setfId] = useState();
   const [file, setFile] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -30,7 +30,7 @@ const FileTab = () => {
   });
 
   const getInfo = async (id) => {
-    const res = await fetch(`${baseUrl}/unmask?fid=${id}`, {
+    const res = await fetch(`${baseUrl}/unmask/${wallet}/${id}`, {
       method: "get",
       headers: new Headers({
         "ngrok-skip-browser-warning": "69420",
@@ -52,7 +52,7 @@ const FileTab = () => {
 
     try {
       setLoader(true);
-      const response = await fetch(`${baseUrl}/file/upload`, {
+      const response = await fetch(`${baseUrl}/file/${wallet}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -97,7 +97,7 @@ const FileTab = () => {
 
   const imageRedirect = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/unmask?fid=${id}`, {
+      const res = await fetch(`${baseUrl}/unmask/${wallet}/${id}`, {
         method: "get",
         headers: new Headers({
           "ngrok-skip-browser-warning": "69420",

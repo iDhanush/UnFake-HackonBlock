@@ -1,16 +1,11 @@
-import React, { useRef } from "react";
+import React, { useEffect } from "react";
 
 import "./Certificate.scss";
 
 const Certificate = () => {
   return (
     <div className="certi-wrapper">
-      <img className="certificate"
-      src=""
-      alt=""
-      >
-
-      </img>
+      <img className="certificate" src="" alt=""></img>
       <button className="cssbuttons-io-button">
         <svg
           xmlns="http://www.w3.org/2000/svg"

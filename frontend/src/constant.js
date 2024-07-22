@@ -1,1 +1,1 @@
-export  const baseUrl="https://pet-bird-precisely.ngrok-free.app/";
+export  const baseUrl="https://pet-bird-precisely.ngrok-free.app";
