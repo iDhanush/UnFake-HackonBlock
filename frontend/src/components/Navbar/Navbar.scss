@@ -26,6 +26,46 @@
       margin-right: 10px;
     }
   }
+  .cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 1em 1.5em 1em 1.2em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(
+      0deg,
+      rgba(77, 54, 208, 1) 0%,
+      rgba(132, 116, 254, 1) 100%
+    );
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+    letter-spacing: 0.05em;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .cssbuttons-io-button svg {
+    margin-right: 8px;
+  }
+  
+  .cssbuttons-io-button:hover {
+    box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+  }
+  
+  .cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+  }
+
+  .wallet{
+    display: flex;
+    font-size: 14px;
+    gap: 10px;
+    align-items: center;
+    color: #fff;
+  }
 }
 
 .navlinks {
@@ -38,14 +78,15 @@
   }
 }
 
-.login-btn{
-    padding: 10px 20px;
-    border-radius: 12px;
-    border: 1.8px solid var(--primary);
-    background-color: transparent;
-    color: var(--primary);
-    cursor: pointer;
+.login-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1.8px solid var(--primary);
+  background-color: transparent;
+  color: var(--primary);
+  cursor: pointer;
 }
+
 
 
 @media (max-width: 720px) {

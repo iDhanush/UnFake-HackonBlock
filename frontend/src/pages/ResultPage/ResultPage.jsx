@@ -25,8 +25,11 @@ const ResultPage = () => {
     setCertiId,
     prediction,
     setPrediction,
+    wallet,
+    setWallet,
   } = useStore();
 
+  console.log("f", finalResult);
   const navigate = useNavigate();
 
   const [walletAddress, setWalletAddress] = useState(null);
@@ -37,6 +40,8 @@ const ResultPage = () => {
       setProvider(window.ethereum);
     }
   }, []);
+
+  // console.log(wallet);
   const requestAccount = async () => {
     if (provider) {
       try {
@@ -45,6 +50,7 @@ const ResultPage = () => {
         });
         setWalletAddress(accounts[0]);
         console.log(accounts[0]);
+        localStorage.setItem("wallet", accounts[0]);
 
         // Proceed with the transaction
         const tid = await sendEth(accounts[0]);
@@ -104,7 +110,7 @@ const ResultPage = () => {
               <div className="result-grp">
                 <div className="result-grp-name">Fake</div>
                 <Progress.Circle
-                  percent={Math.round(finalResult?.fake * 100)} // Set the percentage value
+                  percent={Math.round(finalResult?.prediction.fake * 100)} // Set the percentage value
                   strokeColor={"rgba(132,116,254,1)"} // Set the stroke color
                   strokeWidth={10} // Set the stroke width
                   trailWidth={10} // Set the trail width (background)
@@ -116,7 +122,7 @@ const ResultPage = () => {
               <div className="result-grp">
                 <div className="result-grp-name">Real</div>
                 <Progress.Circle
-                  percent={Math.round(finalResult?.real * 100)} // Set the percentage value
+                  percent={Math.round(finalResult?.prediction.real * 100)} // Set the percentage value
                   strokeColor={"rgba(132,116,254,1)"} // Set the stroke color
                   strokeWidth={10} // Set the stroke width
                   trailWidth={10} // Set the trail width (background)
@@ -127,7 +133,7 @@ const ResultPage = () => {
               </div>
             </div>
             <div className="btns">
-              {certiId ? (
+              {wallet ? (
                 <button
                   className="cssbuttons-io-button"
                   onClick={() => {
