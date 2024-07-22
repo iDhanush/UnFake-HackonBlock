@@ -2,7 +2,7 @@
 
 ## Project Name
 
-🎓 **DeepCertify**
+🎓 **Unmask**
 
 ## Tagline
 
@@ -10,7 +10,7 @@
 
 ## Description
 
-DeepCertify is a cutting-edge service that combines advanced AI for deepfake detection with blockchain technology to provide tamper-proof certification of media authenticity. Users can upload media files such as images, videos, or audio, and the system will analyze them to detect any signs of manipulation or deepfakery. If the media is verified as authentic, a digital certificate of authenticity is generated and stored on the blockchain. Users can pay for this service using cryptocurrency.
+Unmask is a cutting-edge service that combines advanced AI for deepfake detection with blockchain technology to provide tamper-proof certification of media authenticity. Users can upload media files such as images, videos, or audio, and the system will analyze them to detect any signs of manipulation or deepfakery. If the media is verified as authentic, a digital certificate of authenticity is generated and stored on the blockchain. Users can pay for this service using cryptocurrency.
 
 ![Deepfake Detection](https://example.com/deepfake-detection.png)
 
