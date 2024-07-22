@@ -38,6 +38,7 @@ During the development of Unmask, we encountered a version dependency error whil
 
 ## Technologies We Used
 
+
 - 🎨 **Design:** Figma
 - 💻 **Frontend:** React.js (JavaScript)
 - 🖥️ **Backend:** FastAPI (Python)
