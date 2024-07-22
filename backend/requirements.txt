@@ -6,8 +6,8 @@ torch==1.11.0
 opencv-python==4.7.0.72
 grad-cam==1.4.6
 
-
-
+html2image
+weasyprint
 fastapi
 requests
 motor
