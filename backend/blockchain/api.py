@@ -60,12 +60,9 @@ async def mint_certificate(post_data: PostData):
     client_address = tx.get('from')
     print(client_address, tx)
 
-    # fund_me = FundMe[-1]
-    # tx = fund_me.fund({"from": address, "value": 30000000000000})
     tx = simple_collectible.createCollectible(json_uri, client_address,
                                               {"from": account, "gas_price": Web3.to_wei("0.1", "gwei")})
     print(
         f"You can view your nft at {OPENSEA_URL.format(simple_collectible.address, simple_collectible.tokenCounter() - 1)}")
-    # tx = fund_me.withdraw({"from": address})
     print("Payment Transfered")
     return {"url": img_url}
