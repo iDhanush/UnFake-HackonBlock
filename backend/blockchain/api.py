@@ -3,6 +3,7 @@ import os
 
 import brownie
 import dotenv
+from PIL import Image
 from brownie.network import web3
 from web3 import Web3
 from fastapi import APIRouter
@@ -10,6 +11,8 @@ from pydantic import BaseModel
 from brownie import project, network, accounts, Contract
 from brownie.project import get_loaded_projects
 from brownie.network.account import LocalAccount
+
+from unmask.unmasker import unmask_image
 
 dotenv.load_dotenv()
 bchain_router = APIRouter(tags=['bchain'])
@@ -52,24 +55,24 @@ account = get_account()
 
 
 class PostData(BaseModel):
+    user_address: str
+    file_uid: str
     transc: str
 
 
 nft_url = "https://cardona-zkevm.polygonscan.com/nft/{}/{}"
 
 
-@bchain_router.post('/mint_certificate/')
+@bchain_router.post('/mint_certificate/{user_address:str}/{file_uid:str}')
 async def mint_certificate(post_data: PostData):
-    img_url = 'https://i.imgur.com/U6POR5Z.jpeg'
+    img_url = f'https://pet-bird-precisely.ngrok-free.app/dwd/{post_data.file_uid}'
+    prediction = unmask_image(Image.open(f'assets/{post_data.file_uid}'))
     uri = {
-        "name": f"kjhdaskjhagsdadskjhgadskjhgklajsdh",
-        "description": f"lkjnfaskadlsjhadsklhjgasdlkjhasdlkjh",
+        "name": f"Deep Fake Certification",
+        "description": f"Deep Fake Certification",
         "image": img_url,
         "attributes": [
-            {
-                "Result": f"asdas",
-                "value": str('100')
-            }
+            prediction
         ]
     }
     json_uri = json.dumps(uri)
