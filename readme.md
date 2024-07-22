@@ -12,7 +12,6 @@
 
 Unmask is a cutting-edge service that combines advanced AI for deepfake detection with blockchain technology to provide tamper-proof certification of media authenticity. Users can upload media files such as images, videos, or audio, and the system will analyze them to detect any signs of manipulation or deepfakery. If the media is verified as authentic, a digital certificate of authenticity is generated and stored on the blockchain. Users can pay for this service using cryptocurrency.
 
-![Deepfake Detection](https://example.com/deepfake-detection.png)
 
 ## Problem It Solves
 
@@ -25,7 +24,6 @@ In an era where synthetic media and deepfake technology are becoming increasingl
 - **Legal Evidence:** Legal professionals can use the service to verify the authenticity of digital evidence, ensuring its admissibility in court.
 - **Personal Use:** Individuals can verify personal photos or videos, such as those used in online dating or professional profiles.
 
-![Use Cases](https://example.com/use-cases.png)
 
 ## Key Features
 
@@ -38,7 +36,6 @@ In an era where synthetic media and deepfake technology are becoming increasingl
 
 During the development of Unmask, we encountered a version dependency error while installing the requirements for the deep learning model. This issue was resolved by providing two separate requirements files to manage the dependencies effectively.
 
-![Challenges](https://example.com/challenges.png)
 
 ## Technologies We Used
 
