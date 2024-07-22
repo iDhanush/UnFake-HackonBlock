@@ -1,3 +1,7 @@
+eth-brownie
 fastapi
 requests
-brownie
+motor
+pymongo
+pymongo[srv]
+pydantic
