@@ -1,0 +1,116 @@
+.certi-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.certificate {
+  width: 680px;
+  height: 520px;
+  background-color: #000;
+  box-shadow: var(--shadow);
+  display: flex;
+  border-radius: 20px;
+}
+
+.left-bar {
+  width: 80px;
+  height: 100%;
+  background: var(--primary);
+}
+
+.right-side {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.certi-head {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary);
+  span {
+    color: #fff;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 4px;
+  background-color: #ccd9fb91;
+}
+
+.certi-flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.certi-flex-left {
+  margin-top: -60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+  width: 100%;
+}
+
+.certi-grp {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.grp-title {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.grp-name {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.certi-id{
+  font-size: 10px;
+}
+
+.certi-flex-right {
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-weight: 600;
+  img {
+    margin-right: -25px;
+  }
+}
+
+.qr-sec {
+  margin-top: -60px;
+  display: flex;
+  color: #fff;
+  font-size: 14px;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.certi-btn {
+  padding: 20px 30px;
+  border-radius: 10px;
+  border: none;
+  background-color:rgba(0, 0, 0, 0.934);
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+}
