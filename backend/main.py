@@ -18,6 +18,7 @@ app.add_middleware(
 )
 
 app.mount("/dwd", StaticFiles(directory="assets"), name="download")
+app.mount("/certificate", StaticFiles(directory="certificates"), name="certificates")
 app.include_router(auth_router)
 app.include_router(bchain_router)
 app.include_router(upload_router)
