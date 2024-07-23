@@ -1,9 +1,10 @@
 import os
 
+import cv2
 from PIL import Image
 from fastapi import APIRouter, HTTPException
 from unmask.unmasker import unmask_image
-from utils import image_extensions, file_to_sha256, video_extensions
+from utils import image_extensions, file_to_sha256, video_extensions, get_four_screenshots, invoke_uid
 
 unmask_router = APIRouter(tags=['unmask'])
 
@@ -33,3 +34,18 @@ async def unmasker(client_address: str, file_uid: str):
            'fid': file_uid,
            'hash': file_to_sha256(f'assets/{file_uid}')}
     return res
+
+
+@unmask_router.get("/split_vid")
+async def upload_file(fid: str):
+    print('spliting video')
+    path = f'./assets/{fid}'
+    if not os.path.exists(path):
+        return False
+    snaps = get_four_screenshots(path)
+    snap_ids = []
+    for i, screenshot in enumerate(snaps):
+        fid = invoke_uid()
+        snap_ids.append(f'{fid}.png')
+        cv2.imwrite(f"assets/{fid}.png", screenshot)
+    return {"snap": snap_ids}
