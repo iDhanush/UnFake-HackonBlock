@@ -5,6 +5,7 @@ import CERTI from "../../assets/certifi.jpeg";
 import POLY from "../../assets/polygon.png";
 import { baseUrl } from "../../constant";
 import SpinLoader from "../../components/SpinLoader/SpinLoader";
+import { Link } from "react-router-dom";
 
 const Nft = () => {
   const { wallet } = useStore();
@@ -22,7 +23,7 @@ const Nft = () => {
           }),
         });
         const result = await response.json();
-        console.log(result);
+        console.log(result.nfts);
         setCertificates(result.nfts);
         setLoader(false);
       } catch (err) {
@@ -32,16 +33,6 @@ const Nft = () => {
     };
     fetchCerti();
   }, [wallet]);
-
-  const handleViewCertificate = (certId) => {
-    // Implement view certificate functionality
-    console.log(`Viewing certificate ${certId}`);
-  };
-
-  const handleViewOnPolygonscan = (certId) => {
-    // Implement view on Polygonscan functionality
-    console.log(`Viewing certificate ${certId} on Polygonscan`);
-  };
 
   return (
     <div className="nft-page">
@@ -58,10 +49,11 @@ const Nft = () => {
                     <img src={POLY} alt="Polygon logo" />
                   </div>
                   <div className="certi-container">
-                    <img src={CERTI} className="certi-img" alt="Certificate" />
-                    <div
+                    <img src={`${cert.uri.image}`} className="certi-img" alt="Certificate" />
+                    <a
                       className="view-btn"
-                      onClick={() => handleViewCertificate(cert.id)}
+                      href={cert.uri.image}
+                      download={true}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -75,24 +67,19 @@ const Nft = () => {
                         />
                       </svg>
                       view certificate
-                    </div>
+                    </a>
                   </div>
                   <div className="card-name">{cert.name || "Certificate"}</div>
-                  <div
-                    className="view-poly-btn"
-                    onClick={() => handleViewOnPolygonscan(cert.id)}
-                  >
+                  <Link className="view-poly-btn" href={cert.polygon_url}>
                     view on polygonscan
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
           )}
         </>
       ) : (
-        <div className="connect-txt">
-          Please connect your wallet 😧
-        </div>
+        <div className="connect-txt">Please connect your wallet 😧</div>
       )}
     </div>
   );
