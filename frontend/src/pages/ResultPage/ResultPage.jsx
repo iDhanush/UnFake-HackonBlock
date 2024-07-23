@@ -6,6 +6,8 @@ import { Progress } from "rsuite";
 import { baseUrl } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import Loader from "../Loader/Loader";
 
 const ResultPage = () => {
   const customProgressBarStyle = {
@@ -34,6 +36,7 @@ const ResultPage = () => {
 
   const [walletAddress, setWalletAddress] = useState(null);
   const [provider, setProvider] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (window.ethereum) {
@@ -51,22 +54,6 @@ const ResultPage = () => {
         setWalletAddress(accounts[0]);
         console.log(accounts[0]);
         localStorage.setItem("wallet", accounts[0]);
-
-        // Proceed with the transaction
-        const tid = await sendEth(accounts[0]);
-
-        // After successful transaction, you can proceed with generating the certificate
-
-        const res = await fetch(`${baseUrl}/gen-certi/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ transc: tid }),
-        });
-        const result = await res.json();
-        setCertiId(result.url);
-        console.log(result);
       } catch (err) {
         console.error("Error:", err);
       }
@@ -74,6 +61,33 @@ const ResultPage = () => {
       console.log("MetaMask not detected");
     }
   };
+  async function getCerti() {
+    // After successful transaction, you can proceed with generating the certificate
+    try {
+      // Proceed with the transaction
+      // const tid = await sendEth(wallet);
+      setLoading(true);
+      const res = await fetch(`${baseUrl}/mint_certificate/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // transction_id: tid,
+          user_address: wallet,
+          file_uid: finalResult?.fid,
+        }),
+      });
+      const result = await res.json();
+      setCertiId(result.certificate_url);
+      console.log(result);
+      setLoading(false);
+      navigate("/certification");
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  }
   const sendEth = async (fromAddress) => {
     try {
       const txHash = await provider.request({
@@ -92,12 +106,16 @@ const ResultPage = () => {
       console.log("Transaction hash:", txHash);
       return txHash;
     } catch (error) {
+      toast.error("Transaction error ❌");
+      //return dummy
       console.error("Error sending transaction:", error);
       throw error;
     }
   };
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="result-page">
       <div className="result-wrapper">
         <h1 className="result-head">Analysis</h1>
@@ -137,7 +155,7 @@ const ResultPage = () => {
                 <button
                   className="cssbuttons-io-button"
                   onClick={() => {
-                    navigate("/certification");
+                    getCerti();
                   }}
                 >
                   <span>Get Certificate</span>

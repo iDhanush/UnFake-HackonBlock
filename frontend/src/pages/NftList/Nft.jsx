@@ -42,7 +42,7 @@ const Nft = () => {
     <div className="nft-page">
       <div className="sec-head">My certificates</div>
       <div className="nft-list">
-        {certificates.map((cert, index) => (
+        {certificates?.map((cert, index) => (
           <div key={index} className="nft-card">
             <div className="card-top">
               <img src={POLY} alt="Polygon logo" />
