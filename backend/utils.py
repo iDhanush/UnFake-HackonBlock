@@ -7,7 +7,14 @@ import string
 
 import cv2
 from pytube import YouTube
+from pytube.innertube import _default_clients
 
+_default_clients["ANDROID"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["IOS"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["ANDROID_EMBED"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["IOS_EMBED"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["IOS_MUSIC"]["context"]["client"]["clientVersion"] = "6.41"
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 image_extensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp']
 video_extensions = ['mp4', 'mov', 'avi', 'mkv', 'flv', 'wmv', 'm4v']
 
@@ -53,7 +60,6 @@ def get_four_screenshots(video_path):
     return screenshots
 
 
-
 def is_youtube_url(url):
     regex = r"you|yt"
     return re.search(regex, url)
@@ -71,4 +77,5 @@ def is_instagram_url(url):
 def yt_downloader(url, fid):
     yt = YouTube(url)
     stream = yt.streams.get_by_resolution('360p')
+    print(stream)
     stream.download(output_path=f'assets', filename=f'{fid}.mp4')
