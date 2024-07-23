@@ -8,6 +8,7 @@ class CertificateData(BaseModel):
     file_uid: str
     file_hash: str
     tx_id: str
+    owner_address: str
     polygon_url: str
 
 
