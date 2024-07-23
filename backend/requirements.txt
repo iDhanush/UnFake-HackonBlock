@@ -15,3 +15,4 @@ pymongo
 pymongo[srv]
 pydantic
 uvicorn
+pytube
