@@ -70,9 +70,9 @@ const Nft = () => {
                     </a>
                   </div>
                   <div className="card-name">{cert.uri.name || "Certificate"}</div>
-                  <Link className="view-poly-btn" href={cert.polygon_url}>
+                  <a className="view-poly-btn" href={cert.polygon_url}>
                     view on polygonscan
-                  </Link>
+                  </a>
                 </div>
               ))}
             </div>
