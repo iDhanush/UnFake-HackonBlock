@@ -22,7 +22,7 @@ async def upload_file(client_address: str, file: UploadFile = File(...)):
 
 
 @upload_router.get("/link/{client_address:str}/upload")
-async def upload_file(client_address: str, link: str):
+async def upload_link(client_address: str, link: str):
     print(link)
     fid = f'{client_address}{invoke_uid()}'
     if is_youtube_url(link):
