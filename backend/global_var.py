@@ -1,4 +1,4 @@
-from backend.database import DataBase
+from database import DataBase
 
 
 class Var:

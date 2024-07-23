@@ -103,7 +103,7 @@ async def mint_certificate(post_data: PostData):
     }
 
 
-@bchain_router.get('/cert/{user_address}/')
+@bchain_router.get('/cert/{user_address}')
 async def get_user_nfts(user_address: str):
     try:
         # Get the total supply of tokens
