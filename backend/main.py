@@ -16,11 +16,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(auth_router, prefix="/api")
+# app.include_router(bchain_router, prefix="/api")
+app.include_router(upload_router, prefix="/api")
+app.include_router(unmask_router, prefix="/api")
 
-app.mount("/dwd", StaticFiles(directory="assets"), name="download")
+app.mount("/api/dwd", StaticFiles(directory="assets"), name="download")
 app.mount("/certificate", StaticFiles(directory="certificates"), name="certificates")
-app.include_router(auth_router)
-app.include_router(bchain_router)
-app.include_router(upload_router)
-app.include_router(unmask_router)
+# app.mount("/", StaticFiles(directory="dist"), name="index.html")
+
 # uvicorn.run(app, host="localhost", port=8000)
