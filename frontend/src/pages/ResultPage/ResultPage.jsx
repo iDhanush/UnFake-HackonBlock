@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Loader from "../Loader/Loader";
+import SpinLoader from "../../components/SpinLoader/SpinLoader";
 
 const ResultPage = () => {
   const customProgressBarStyle = {
@@ -58,7 +59,7 @@ const ResultPage = () => {
         console.error("Error:", err);
       }
     } else {
-      console.log("MetaMask not detected");
+      toast.error("MetaMask not detected 🙁");
     }
   };
   async function getCerti() {
@@ -114,7 +115,7 @@ const ResultPage = () => {
   };
 
   return loading ? (
-    <Loader />
+    <SpinLoader />
   ) : (
     <div className="result-page">
       <div className="result-wrapper">

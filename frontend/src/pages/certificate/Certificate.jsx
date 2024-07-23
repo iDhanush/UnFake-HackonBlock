@@ -8,7 +8,7 @@ const Certificate = () => {
   return (
     <div className="certi-wrapper">
       <img className="certificate" src={`${certiId}`} alt=""></img>
-      <button className="cssbuttons-io-button">
+      <a className="cssas-io-button" href={`${certiId}`} download={true} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={32}
@@ -29,7 +29,7 @@ const Certificate = () => {
           />
         </svg>
         Download certificate
-      </button>
+      </a>
     </div>
   );
 };
