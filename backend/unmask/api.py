@@ -12,7 +12,6 @@ unmask_router = APIRouter(tags=['unmask'])
 async def unmasker(client_address: str, file_uid: str):
     path = f'assets/{file_uid}'
 
-    file = Image.open(f"assets/{file_uid}")
     print(path)
     if not os.path.exists(path):
         raise HTTPException(status_code=404, detail='File not found')
@@ -26,6 +25,7 @@ async def unmasker(client_address: str, file_uid: str):
     if ftype == 'video':
         return {'status': 'pending', 'type': ftype}
 
+    file = Image.open(f"assets/{file_uid}")
     prediction = unmask_image(file)
     res = {'prediction': prediction,
            'status': 'finish',
