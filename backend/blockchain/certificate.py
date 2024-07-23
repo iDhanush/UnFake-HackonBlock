@@ -16,7 +16,7 @@ def html_parser(real_percentage, fake_percentage, file_hash, issued_for, collect
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
       :root {{
-        --primary: #007bff;
+        --primary: #7879F1;
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }}
 
@@ -165,7 +165,7 @@ def html_parser(real_percentage, fake_percentage, file_hash, issued_for, collect
         <div class="divider"></div>
         <div class="img-container">
           <img
-            src="https://i.ibb.co/7trLxqL/mJX3iRC.png"
+            src="https://i.ibb.co/MCn5NHL/head.png"
             width="900px"
             alt="img"
             class="cert-img"
@@ -201,7 +201,7 @@ def html_parser(real_percentage, fake_percentage, file_hash, issued_for, collect
           <div class="certi-flex-right">
             <div class="certi-date">{date}</div>
             <img
-              src="https://i.ibb.co/YQ5BFcG/Medallions.png"
+              src="https://i.ibb.co/47CcZvw/Medallionss.png"
               width="200"
               alt=""
             />

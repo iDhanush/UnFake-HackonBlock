@@ -6,13 +6,15 @@ from PIL import Image
 from web3 import Web3
 from fastapi import APIRouter
 from pydantic import BaseModel
-from brownie import project, network, accounts, Contract
+from utils import file_to_sha256
+from unmask.unmasker import unmask_image
 from brownie.project import get_loaded_projects
 from brownie.network.account import LocalAccount
-
 from blockchain.certificate import create_certificate
-from unmask.unmasker import unmask_image
-from utils import file_to_sha256
+from brownie import project, network, accounts, Contract
+
+from web3 import Web3
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 dotenv.load_dotenv()
 bchain_router = APIRouter(tags=['bchain'])
@@ -50,7 +52,6 @@ def get_or_deploy_contract():
 
 
 simple_collectible = get_or_deploy_contract()
-
 account = get_account()
 
 
@@ -68,36 +69,28 @@ async def mint_certificate(post_data: PostData):
     prediction = unmask_image(Image.open(f'assets/{post_data.file_uid}'))
     file_hash = file_to_sha256(f'assets/{post_data.file_uid}')
     client_address = post_data.user_address
-
-    certificate_id = create_certificate(round(prediction.get('real'), 2) * 100, round(prediction.get('fake'), 2) * 100,
-                                        file_hash,
-                                        client_address,
-                                        simple_collectible.address, datetime.datetime.now().date())
+    certificate_id = create_certificate(
+        round(prediction.get('real') * 100, 2),
+        round(prediction.get('fake') * 100, 2),
+        file_hash,
+        client_address,
+        simple_collectible.address, datetime.datetime.now().date())
     certificate_url = 'https://pet-bird-precisely.ngrok-free.app/certificate/' + certificate_id
     uri = {
         "name": f"Deep Fake Certification",
         "description": f"Deep Fake Certification",
         "image": certificate_url,
-        "file_hash"
+        "file_hash": file_hash,
         "attributes": [
             prediction
         ]
     }
     json_uri = json.dumps(uri)
-    # tx = web3.eth.get_transaction(post_data.transction_id)
-    # client_address = tx.get('from')
-    # print(client_address, tx)
-
     tx = simple_collectible.createCollectible(json_uri, client_address,
                                               {"from": account, "gas_price": Web3.to_wei("3", "gwei")})
 
-    # Wait for the transaction to be mined
     tx.wait(1)
-
-    # Get the token ID of the newly minted token
     token_id = simple_collectible.tokenCounter() - 1
-
-    # Get the token URI
     uri = simple_collectible.tokenURI(token_id)
 
     nft_url_formatted = nft_url.format(simple_collectible.address, token_id)
@@ -113,22 +106,24 @@ async def mint_certificate(post_data: PostData):
 @bchain_router.get('/cert/{user_address}')
 async def get_user_nfts(user_address: str):
     try:
-        # Get the total supply of tokens
-        total_supply = simple_collectible.totalSupply()
+        user_address = Web3.to_checksum_address(user_address)
+        total_supply = simple_collectible.tokenCounter()
 
-        # Initialize an empty list to store the user's NFTs
-        user_nfts = []
-
-        # Iterate through all tokens
-        for token_id in range(total_supply):
-            # Check if the current user is the owner of this token
+        def check_and_get_nft(token_id):
             if simple_collectible.ownerOf(token_id) == user_address:
-                # If yes, get the token URI and add it to the list
                 uri = simple_collectible.tokenURI(token_id)
+                polygon_url = nft_url.format(simple_collectible.address, token_id)
+                return {
+                    "token_id": token_id,
+                    "uri": json.loads(uri),
+                    "polygon_url": polygon_url
+                }
+            return None
 
-                user_nfts.append(
-                    {"token_id": token_id, "uri": json.loads(uri),
-                     "polygon_url": nft_url.format(simple_collectible.address, token_id)})
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = [executor.submit(check_and_get_nft, token_id) for token_id in range(total_supply)]
+            user_nfts = [nft for nft in (future.result() for future in as_completed(futures)) if nft]
+
         return {"user_address": user_address, "nfts": user_nfts}
     except Exception as e:
         return {"error": f"Error getting user NFTs: {str(e)}"}
