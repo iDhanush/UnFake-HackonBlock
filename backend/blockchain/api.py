@@ -1,7 +1,5 @@
 import json
 import os
-
-import brownie
 import dotenv
 from PIL import Image
 from brownie.network import web3
