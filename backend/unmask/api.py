@@ -1,5 +1,4 @@
 import os
-
 import cv2
 from PIL import Image
 from fastapi import APIRouter, HTTPException
@@ -36,12 +35,10 @@ async def unmasker(client_address: str, file_uid: str):
     return res
 
 
-
-
 @unmask_router.get("/split_vid")
 async def upload_file(fid: str):
     print('spliting video')
-    path = f'./assets/{fid}'
+    path = f'assets/{fid}'
     if not os.path.exists(path):
         return False
     snaps = get_four_screenshots(path)
