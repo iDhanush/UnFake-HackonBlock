@@ -1,7 +1,7 @@
-import datetime
-import json
 import os
+import json
 import dotenv
+import datetime
 from PIL import Image
 from web3 import Web3
 from fastapi import APIRouter
@@ -12,8 +12,6 @@ from brownie.project import get_loaded_projects
 from brownie.network.account import LocalAccount
 from blockchain.certificate import create_certificate
 from brownie import project, network, accounts, Contract
-
-from web3 import Web3
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 dotenv.load_dotenv()
