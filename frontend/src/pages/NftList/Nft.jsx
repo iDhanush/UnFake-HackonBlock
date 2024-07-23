@@ -31,7 +31,7 @@ const Nft = () => {
       }
     };
     fetchCerti();
-  }, []);
+  }, [wallet]);
 
   const handleViewCertificate = (certId) => {
     // Implement view certificate functionality
