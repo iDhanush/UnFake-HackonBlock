@@ -27,6 +27,7 @@
       width: 30px;
       margin-right: 10px;
     }
+
   }
   .cssbuttons-io-button {
     display: flex;
@@ -80,22 +81,9 @@
   }
 }
 
-.login-btn {
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: 1.8px solid var(--primary);
-  background-color: transparent;
-  color: var(--primary);
-  cursor: pointer;
-}
-
-
-
-@media (max-width: 720px) {
-  .navlinks {
-    display: none;
-  }
-  .nav {
-    padding: 0px 20px;
-  }
+.nav-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }

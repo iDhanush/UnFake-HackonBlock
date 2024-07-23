@@ -5,7 +5,7 @@ const SpinLoader = () => {
   return (
     <div style={{
         width:'100%',
-        height:'100%',
+        height:'55vh',
         display:'flex',
         alignItems:'center',
         justifyContent:'center'
