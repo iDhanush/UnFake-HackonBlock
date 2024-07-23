@@ -8,13 +8,9 @@ import { baseUrl } from "../../constant";
 const Nft = () => {
   const { wallet } = useStore();
   const [certificates, setCertificates] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchCerti = async () => {
-      setIsLoading(true);
-      setError(null);
       try {
         const response = await fetch(`${baseUrl}/cert/${wallet}`, {
           method: "get",
@@ -22,17 +18,11 @@ const Nft = () => {
             "ngrok-skip-browser-warning": "69420",
           }),
         });
-        if (!response.ok) {
-          throw new Error("Failed to fetch certificates");
-        }
         const result = await response.json();
-        console.log(result)
+        console.log(result);
         setCertificates(result.nfts);
       } catch (err) {
         console.error(err);
-        setError("Failed to load certificates. Please try again later.");
-      } finally {
-        setIsLoading(false);
       }
     };
     fetchCerti();
@@ -47,9 +37,6 @@ const Nft = () => {
     // Implement view on Polygonscan functionality
     console.log(`Viewing certificate ${certId} on Polygonscan`);
   };
-
-  if (isLoading) return <div>Loading certificates...</div>;
-  if (error) return <div>{error}</div>;
 
   return (
     <div className="nft-page">
