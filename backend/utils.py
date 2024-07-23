@@ -1,7 +1,12 @@
 import base64
 import hashlib
+import math
 import random
+import re
 import string
+
+import cv2
+from pytube import YouTube
 
 image_extensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp']
 video_extensions = ['mp4', 'mov', 'avi', 'mkv', 'flv', 'wmv', 'm4v']
@@ -46,3 +51,24 @@ def get_four_screenshots(video_path):
             screenshots.append(frame)
     cap.release()
     return screenshots
+
+
+
+def is_youtube_url(url):
+    regex = r"you|yt"
+    return re.search(regex, url)
+
+
+def is_twitter_url(url):
+    return "twitter.com" in url or "x.com" in url
+
+
+def is_instagram_url(url):
+    base_urls = ["https://www.instagram.com", "http://www.instagram.com", "https://instagram.com"]
+    return any(url.startswith(base) for base in base_urls)
+
+
+def yt_downloader(url, fid):
+    yt = YouTube(url)
+    stream = yt.streams.get_by_resolution('360p')
+    stream.download(output_path=f'assets', filename=f'{fid}.mp4')
