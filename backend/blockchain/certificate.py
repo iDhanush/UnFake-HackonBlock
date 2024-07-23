@@ -1,6 +1,9 @@
-from html2image import Html2Image
+import datetime
 
+from database import CertificateData
+from global_var import Var
 from utils import invoke_uid
+from html2image import Html2Image
 
 html_certificate = """
 <html>
@@ -131,6 +134,13 @@ def html_to_image(html_string, output_file):
     hti.screenshot(html_str=html_string, save_as=output_file, size=(800, 800))
 
 
-def create_certificate(file_uid, file_hash, date, tx_id, polygon_url):
+async def create_certificate(time: datetime.datetime,
+                             file_uid: str,
+                             file_hash: str,
+                             tx_id: str,
+                             polygon_url: str):
     certificate_uid = invoke_uid()
+    certificate_data = CertificateData(time=time, file_uid=file_uid, file_hash=file_hash, tx_id=tx_id,
+                                       polygon_url=polygon_url, certificate=certificate_uid)
+    await Var.db.add_cert(certificate_data)
     html_to_image(html_certificate, f"certificates/{certificate_uid}.png")
