@@ -91,10 +91,10 @@ const ResultPage = () => {
   }
   const sendEth = async (fromAddress) => {
     try {
-      // Ensure the provider is connected to PolygonZKEVM
+      // Ensure the provider is connected to PolygonZKEVM testnet
       await provider.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x44d' }], // PolygonZKEVM mainnet chain ID
+        params: [{ chainId: '0x5a2' }], // PolygonZKEVM testnet chain ID
       });
   
       const txParams = {
@@ -126,15 +126,15 @@ const ResultPage = () => {
           await provider.request({
             method: 'wallet_addEthereumChain',
             params: [{
-              chainId: '2442',
-              chainName: 'Polygon zkEVM',
+              chainId: '0x5a2',
+              chainName: 'Polygon zkEVM Testnet',
               nativeCurrency: {
                 name: 'Ethereum',
                 symbol: 'ETH',
                 decimals: 18
               },
-              rpcUrls: ['https://zkevm-rpc.com'],
-              blockExplorerUrls: ['https://zkevm.polygonscan.com/']
+              rpcUrls: ['https://rpc.public.zkevm-test.net'],
+              blockExplorerUrls: ['https://testnet-zkevm.polygonscan.com/']
             }]
           });
         } catch (addError) {
