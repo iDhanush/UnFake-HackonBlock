@@ -6,7 +6,7 @@ torch==1.11.0
 opencv-python==4.7.0.72
 grad-cam==1.4.6
 
-html2image
+html2image~=2.0.4.3
 weasyprint
 fastapi
 requests
@@ -16,3 +16,6 @@ pymongo[srv]
 pydantic
 uvicorn
 pytube
+starlette
+python-dotenv~=0.16.0
+web3

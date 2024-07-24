@@ -1,12 +1,13 @@
-import base64
-import hashlib
-import math
-import random
 import re
+import cv2
+import math
+import base64
+import random
 import string
 
-import cv2
-from pytube import YouTube
+import requests
+import yt_dlp
+import hashlib
 
 image_extensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp']
 video_extensions = ['mp4', 'mov', 'avi', 'mkv', 'flv', 'wmv', 'm4v']
@@ -53,7 +54,6 @@ def get_four_screenshots(video_path):
     return screenshots
 
 
-
 def is_youtube_url(url):
     regex = r"you|yt"
     return re.search(regex, url)
@@ -68,7 +68,17 @@ def is_instagram_url(url):
     return any(url.startswith(base) for base in base_urls)
 
 
-def yt_downloader(url, fid):
-    yt = YouTube(url)
-    stream = yt.streams.get_by_resolution('360p')
-    stream.download(output_path=f'assets', filename=f'{fid}.mp4')
+def yt_downloader(url, file_uid):
+    ydl_opts = {
+        'format': 'bestvideo[height<=360][ext=mp4]+bestaudio[ext=m4a]/best[height<=360][ext=mp4]/best[height<=360]',
+        'outtmpl': f'assets/{file_uid}',
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+
+
+def insta_downloader():
+    res = requests.post('https://fastdl.app/api/convert', json={
+        "url": "https://www.instagram.com/reel/C8zaus6s8Qs",
+    })
+    print(res)
