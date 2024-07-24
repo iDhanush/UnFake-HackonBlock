@@ -81,7 +81,7 @@ const FileTab = () => {
         setFinalResult(info);
         navigate("/result");
       } else {
-        toast.error("type not defined");
+        toast.error("Server is offline 🚧");
       }
       setLoader(false);
     } catch (error) {
