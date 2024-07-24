@@ -43,7 +43,7 @@ def get_or_deploy_contract():
         return Contract.from_abi("SimpleCollectible", contract_address, SimpleCollectible.abi)
     else:
         print("Deploying new contract")
-        contract = SimpleCollectible.deploy({"from": account, "gas_price": Web3.to_wei("3", "gwei")})
+        contract = SimpleCollectible.deploy({"from": account, "gas_price": Web3.to_wei("4", "gwei")})
         with open(deploy_file, 'w') as f:
             f.write(contract.address)
         return contract
@@ -85,7 +85,7 @@ async def mint_certificate(post_data: PostData):
     }
     json_uri = json.dumps(uri)
     tx = simple_collectible.createCollectible(json_uri, client_address,
-                                              {"from": account, "gas_price": Web3.to_wei("3", "gwei")})
+                                              {"from": account, "gas_price": Web3.to_wei("4", "gwei")})
 
     tx.wait(1)
     token_id = simple_collectible.tokenCounter() - 1
