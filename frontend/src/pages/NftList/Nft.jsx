@@ -43,38 +43,53 @@ const Nft = () => {
             <SpinLoader />
           ) : (
             <div className="nft-list">
-              {certificates?.map((cert, index) => (
-                <div key={index} className="nft-card">
-                  <div className="card-top">
-                    <img src={POLY} alt="Polygon logo" />
-                  </div>
-                  <div className="certi-container">
-                    <img src={`${cert.uri.image}`} className="certi-img" alt="Certificate" />
-                    <a
-                      className="view-btn"
-                      href={cert.uri.image}
-                      download={true}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={18}
-                        height={19}
-                        fill="none"
+              {certificates?.length > 0 ? (
+                certificates?.map((cert, index) => (
+                  <div key={index} className="nft-card">
+                    <div className="card-top">
+                      <img src={POLY} alt="Polygon logo" />
+                    </div>
+                    <div className="certi-container">
+                      <img
+                        src={`${cert.uri.image}`}
+                        className="certi-img"
+                        alt="Certificate"
+                      />
+                      <a
+                        className="view-btn"
+                        href={cert.uri.image}
+                        download={true}
                       >
-                        <path
-                          fill="#DAC50B"
-                          d="m9 .5 2.43 6.57L18 9.5l-6.57 2.43L9 18.5l-2.43-6.57L0 9.5l6.57-2.43z"
-                        />
-                      </svg>
-                      view certificate
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={18}
+                          height={19}
+                          fill="none"
+                        >
+                          <path
+                            fill="#DAC50B"
+                            d="m9 .5 2.43 6.57L18 9.5l-6.57 2.43L9 18.5l-2.43-6.57L0 9.5l6.57-2.43z"
+                          />
+                        </svg>
+                        view certificate
+                      </a>
+                    </div>
+                    <div className="card-name">
+                      {cert.uri.name || "Certificate"}
+                    </div>
+                    <a className="view-poly-btn" href={cert.polygon_url}>
+                      view on polygonscan
                     </a>
                   </div>
-                  <div className="card-name">{cert.uri.name || "Certificate"}</div>
-                  <a className="view-poly-btn" href={cert.polygon_url}>
-                    view on polygonscan
-                  </a>
-                </div>
-              ))}
+                ))
+              ) : (
+                <button
+                  onClick={() => window.location.reload()}
+                  className="reload-btn"
+                >
+                  Reload ⚡️{" "}
+                </button>
+              )}
             </div>
           )}
         </>
