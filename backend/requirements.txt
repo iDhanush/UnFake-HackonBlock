@@ -9,6 +9,7 @@ grad-cam==1.4.6
 html2image~=2.0.4.3
 weasyprint
 fastapi
+yt-dlp
 requests
 motor
 pymongo
