@@ -91,24 +91,57 @@ const ResultPage = () => {
   }
   const sendEth = async (fromAddress) => {
     try {
+      // Ensure the provider is connected to PolygonZKEVM
+      await provider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x44d' }], // PolygonZKEVM mainnet chain ID
+      });
+  
+      const txParams = {
+        from: fromAddress,
+        to: "0xf22756f18828b857c8252b4B735907fA9Ba24C9b",
+        value: "0x1af5e24c8", // 30000000000000 in hex
+        gasLimit: "0x5028",
+      };
+  
+      // Get the current gas price
+      const gasPrice = await provider.request({
+        method: 'eth_gasPrice',
+      });
+  
+      txParams.gasPrice = gasPrice;
+  
       const txHash = await provider.request({
         method: "eth_sendTransaction",
-        params: [
-          {
-            from: fromAddress,
-            to: "0xf22756f18828b857c8252b4B735907fA9Ba24C9b",
-            value: "30000000000000",
-            gasLimit: "0x5028",
-            maxPriorityFeePerGas: "0x3b9aca00",
-            maxFeePerGas: "0x2540be400",
-          },
-        ],
+        params: [txParams],
       });
+  
       console.log("Transaction hash:", txHash);
       return txHash;
     } catch (error) {
-      toast.error("Transaction error ❌");
       console.error("Error sending transaction:", error);
+      if (error.code === 4902) {
+        // If the chain hasn't been added to MetaMask, add it
+        try {
+          await provider.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+              chainId: '2442',
+              chainName: 'Polygon zkEVM',
+              nativeCurrency: {
+                name: 'Ethereum',
+                symbol: 'ETH',
+                decimals: 18
+              },
+              rpcUrls: ['https://zkevm-rpc.com'],
+              blockExplorerUrls: ['https://zkevm.polygonscan.com/']
+            }]
+          });
+        } catch (addError) {
+          console.error("Error adding the chain:", addError);
+        }
+      }
+      toast.error("Transaction error ❌");
       throw error;
     }
   };
