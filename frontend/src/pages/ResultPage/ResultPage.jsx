@@ -91,17 +91,46 @@ const ResultPage = () => {
   }
   const sendEth = async (fromAddress) => {
     try {
-      // Ensure the provider is connected to PolygonZKEVM testnet
+      // Chain addition code remains the same
+      try {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [{
+            chainId: '0x98a',
+            chainName: 'Polygon zkEVM Testnet',
+            nativeCurrency: {
+              name: 'Ethereum',
+              symbol: 'ETH',
+              decimals: 18
+            },
+            rpcUrls: ['https://rpc.cardona.zkevm-rpc.com/'],
+            blockExplorerUrls: ['https://cardona-zkevm.polygonscan.com/']
+          }]
+        });
+      } catch (addError) {
+        console.log("Chain might already be added or user rejected addition");
+      }
+  
+      // Chain switching code remains the same
       await provider.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x5a2' }], // PolygonZKEVM testnet chain ID
+        params: [{ chainId: '0x98a' }], // PolygonZKEVM testnet chain ID
       });
+  
+      // Get the current ETH price in USD
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+      const data = await response.json();
+      const ethPrice = data.ethereum.usd;
+  
+      // Calculate the amount of ETH equivalent to 1 USD
+      const ethAmount = 1 / ethPrice;
+      const weiAmount = ethAmount * 1e18; // Convert ETH to Wei
   
       const txParams = {
         from: fromAddress,
         to: "0xf22756f18828b857c8252b4B735907fA9Ba24C9b",
-        value: "0x1af5e24c8", // 30000000000000 in hex
-        gasLimit: "0x5028",
+        value: '0x' + Math.round(weiAmount).toString(16), // Convert to hex
+        gasLimit: "0x5208", // 21000 gas (standard transaction)
       };
   
       // Get the current gas price
@@ -120,31 +149,10 @@ const ResultPage = () => {
       return txHash;
     } catch (error) {
       console.error("Error sending transaction:", error);
-      if (error.code === 4902) {
-        // If the chain hasn't been added to MetaMask, add it
-        try {
-          await provider.request({
-            method: 'wallet_addEthereumChain',
-            params: [{
-              chainId: '0x5a2',
-              chainName: 'Polygon zkEVM Testnet',
-              nativeCurrency: {
-                name: 'Ethereum',
-                symbol: 'ETH',
-                decimals: 18
-              },
-              rpcUrls: ['https://rpc.public.zkevm-test.net'],
-              blockExplorerUrls: ['https://testnet-zkevm.polygonscan.com/']
-            }]
-          });
-        } catch (addError) {
-          console.error("Error adding the chain:", addError);
-        }
-      }
       toast.error("Transaction error ❌");
       throw error;
     }
-  };
+  }
 
   return loading ? (
     <SpinLoader />
