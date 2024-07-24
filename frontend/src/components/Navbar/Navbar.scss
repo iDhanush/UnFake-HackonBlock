@@ -93,14 +93,23 @@
     margin-top: -20px;
   }
   .navlinks {
-    display: none;
+    font-size: 12px;
+    gap: 10px;
   }
-}
-
-@media (max-width: 420px) {
   .nav {
     .wallet {
       display: none;
     }
+  }
+}
+
+@media (max-width: 420px) {
+  .cssbuttons-io-button{
+    font-size: 12px;
+    padding: 4px;
+  }
+  .navlinks {
+    font-size: 10px;
+    gap: 10px;
   }
 }
