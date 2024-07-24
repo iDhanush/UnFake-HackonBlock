@@ -26,7 +26,6 @@ async def upload_link(client_address: str, link: str):
     print(link)
     fid = f'{client_address}{invoke_uid()}'
     if is_youtube_url(link):
-        print('yt')
         yt_downloader(link, fid)
     elif is_instagram_url(link):
         insta_downloader(link, fid)
