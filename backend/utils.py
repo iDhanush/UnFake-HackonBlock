@@ -4,6 +4,8 @@ import math
 import base64
 import random
 import string
+
+import requests
 import yt_dlp
 import hashlib
 
@@ -73,3 +75,10 @@ def yt_downloader(url, file_uid):
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
+
+
+def insta_downloader():
+    res = requests.post('https://fastdl.app/api/convert', json={
+        "url": "https://www.instagram.com/reel/C8zaus6s8Qs",
+    })
+    print(res)
