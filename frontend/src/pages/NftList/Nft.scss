@@ -1,0 +1,108 @@
+.nft-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+  overflow-y: auto;
+
+  .sec-head {
+    font-size: 40px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .nft-list {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nft-card {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid rgba(220, 220, 220, 0.29);
+    background: linear-gradient(
+      107deg,
+      rgba(126, 126, 126, 0.16) 1.44%,
+      rgba(126, 126, 126, 0.14) 108.41%
+    );
+  }
+  .certi-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  .certi-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+  .view-btn {
+    position: absolute;
+    color: #fff;
+    border-radius: 20px;
+    background: rgba(13, 13, 13, 0.657);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    a{
+      text-decoration: none;
+    }
+  }
+  .card-name {
+    color: #fff;
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+  .view-poly-btn {
+    width: 100%;
+    height: 50px;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    a{
+      text-decoration: none;
+    }
+  }
+}
+
+.connect-txt {
+  width: 100%;
+  height: 200px;
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 100px;
+}
+
+.reload-btn{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

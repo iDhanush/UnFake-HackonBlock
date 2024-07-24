@@ -14,7 +14,7 @@ const Tabs = ({ finalResult, setFinalResult }) => {
           onClick={() => setIsSelected(1)}
           className={isSelected === 1 ? "tab highlight" : "tab"}
         >
-          Video
+          File
         </div>
         <div
           onClick={() => setIsSelected(2)}

@@ -1,17 +1,14 @@
-import React, { useRef } from "react";
+import React, { useEffect } from "react";
 
 import "./Certificate.scss";
+import { useStore } from "../../context/StoreContext";
 
 const Certificate = () => {
+  const {certiId}=useStore()
   return (
     <div className="certi-wrapper">
-      <img className="certificate"
-      src=""
-      alt=""
-      >
-
-      </img>
-      <button className="certi-btn">
+      <img className="certificate" src={`${certiId}`} alt=""></img>
+      <a className="cssas-io-button" href={`${certiId}`} download={true} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={32}
@@ -31,7 +28,8 @@ const Certificate = () => {
             d="M16 22.333a1 1 0 0 1-.707-.293l-4.466-4.467a1.006 1.006 0 0 1 0-1.413 1.006 1.006 0 0 1 1.413 0L16 19.92l3.76-3.76a1.006 1.006 0 0 1 1.413 0 1.006 1.006 0 0 1 0 1.413l-4.466 4.467a1 1 0 0 1-.707.293"
           />
         </svg>
-      </button>
+        Download certificate
+      </a>
     </div>
   );
 };

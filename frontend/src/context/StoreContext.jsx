@@ -9,7 +9,7 @@ export const StoreProvider = ({ children }) => {
   const [imageSet, setImageSet] = useState([]);
   const [certiId, setCertiId] = useState(null);
   const [prediction, setPrediction] = useState(null);
-
+  const [wallet, setWallet] = useState(localStorage.getItem("wallet") || null);
   const value = {
     finalResult,
     setFinalResult,
@@ -19,6 +19,8 @@ export const StoreProvider = ({ children }) => {
     setCertiId,
     prediction,
     setPrediction,
+    wallet,
+    setWallet,
   };
 
   return (

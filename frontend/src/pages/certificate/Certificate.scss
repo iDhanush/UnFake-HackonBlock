@@ -3,16 +3,50 @@
   height: 100%;
   padding: 20px;
   display: flex;
-  gap: 10px;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  a{
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 1em 1.5em 1em 1.2em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(
+      0deg,
+      rgba(77, 54, 208, 1) 0%,
+      rgba(132, 116, 254, 1) 100%
+    );
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+    letter-spacing: 0.05em;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    gap: 10px;
+  }
+
+  .cssbuttons-io-button svg {
+    margin-right: 8px;
+  }
+
+  .cssbuttons-io-button:hover {
+    box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+  }
+
+  .cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+  }
 }
 .certificate {
-  width: 680px;
+  width: 760px;
   height: 520px;
   background-color: #000;
-  box-shadow: var(--shadow);
   display: flex;
-  border-radius: 20px;
 }
 
 .left-bar {
@@ -78,7 +112,7 @@
   font-size: 20px;
 }
 
-.certi-id{
+.certi-id {
   font-size: 10px;
 }
 
@@ -107,7 +141,7 @@
   padding: 20px 30px;
   border-radius: 10px;
   border: none;
-  background-color:rgba(0, 0, 0, 0.934);
+  background-color: rgba(0, 0, 0, 0.934);
   color: #fff;
   font-weight: 500;
   font-size: 18px;
