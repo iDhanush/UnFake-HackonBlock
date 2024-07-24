@@ -39,7 +39,7 @@
   }
 
   .bottom-box {
-    min-height: 280px;
+    min-height: 260px;
     display: flex;
     flex-direction: column;
     padding-top: 10px;
@@ -47,8 +47,21 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 600px) {
   .box {
+    width: 100%;
+    padding: 20px;
+    .tab {
+      font-size: 14px;
+      height: 36px;
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .box {
+    width: 100%;
     padding: 10px;
     .tab {
       font-size: 14px;

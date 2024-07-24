@@ -233,7 +233,7 @@
     flex-direction: column-reverse;
   }
   .main-img{
-    width: 40vw;
+    width: 50vw;
     height: auto;
     margin-bottom: 60px;
   }
@@ -260,6 +260,10 @@
   .img-container {
     grid-template-columns: repeat(2, 1fr);
   }
+  .main-img{
+    width: 60vw;
+    margin-top: -80px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -269,7 +273,7 @@
   }
   .main-txt {
     font-size: 24px;
-    line-height: 3rem;
+    line-height: 2rem;
     text-align: center;
     line-height: 2.5rem;
   }

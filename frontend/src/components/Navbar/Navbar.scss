@@ -27,7 +27,6 @@
       width: 30px;
       margin-right: 10px;
     }
-
   }
   .cssbuttons-io-button {
     display: flex;
@@ -49,20 +48,20 @@
     border-radius: 10px;
     cursor: pointer;
   }
-  
+
   .cssbuttons-io-button svg {
     margin-right: 8px;
   }
-  
+
   .cssbuttons-io-button:hover {
     box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
   }
-  
+
   .cssbuttons-io-button:active {
     box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
   }
 
-  .wallet{
+  .wallet {
     display: flex;
     font-size: 14px;
     gap: 10px;
@@ -81,9 +80,27 @@
   }
 }
 
-.nav-group{
+.nav-group {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 20px;
+}
+
+@media (max-width: 740px) {
+  .nav {
+    padding: 20px;
+    margin-top: -20px;
+  }
+  .navlinks {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav {
+    .wallet {
+      display: none;
+    }
+  }
 }
