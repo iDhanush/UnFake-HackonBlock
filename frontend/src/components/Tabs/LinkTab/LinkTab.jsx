@@ -18,6 +18,8 @@ const LinkTab = () => {
   const { setFinalResult } = useStore();
   const navigate = useNavigate();
 
+  const { wallet } = useStore();
+  
   const getImages = async (id) => {
     const res = await fetch(`${baseUrl}/split_vid?fid=${id}`, {
       method: "get",
@@ -34,7 +36,7 @@ const LinkTab = () => {
     console.log("link : ", link);
     if (link.length > 0) {
       setLoader(true);
-      const id = await useFetch(link);
+      const id = await useFetch(link, wallet);
       console.log(id);
       const imageSet = await getImages(id);
       setResult(imageSet.snap);
@@ -46,7 +48,7 @@ const LinkTab = () => {
 
   const imageRedirect = async (id) => {
     try {
-      const res = await fetch(`${baseUrl}/unmask?fid=${id}`, {
+      const res = await fetch(`${baseUrl}/unmask/${wallet}/${id}`, {
         method: "get",
         headers: new Headers({
           "ngrok-skip-browser-warning": "69420",

@@ -1,8 +1,9 @@
 import { baseUrl } from "../constant";
+import { useStore } from "../context/StoreContext";
 
-const useFetch = async (link) => {
+const useFetch = async (link,wallet) => {
   try {
-    const res = await fetch(`${baseUrl}/link/upload?link=${link}`, {
+    const res = await fetch(`${baseUrl}/link/${wallet}/upload?link=${link}`, {
       method: "get",
       headers: new Headers({
         "ngrok-skip-browser-warning": "69420",

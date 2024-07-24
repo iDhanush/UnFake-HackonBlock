@@ -7,7 +7,7 @@
   align-items: center;
   gap: 20px;
 
-  .cssbuttons-io-button {
+  a{
     display: flex;
     align-items: center;
     font-family: inherit;
@@ -26,6 +26,8 @@
     letter-spacing: 0.05em;
     border-radius: 10px;
     cursor: pointer;
+    text-decoration: none;
+    gap: 10px;
   }
 
   .cssbuttons-io-button svg {
@@ -41,12 +43,10 @@
   }
 }
 .certificate {
-  width: 680px;
+  width: 760px;
   height: 520px;
   background-color: #000;
-  box-shadow: var(--shadow);
   display: flex;
-  border-radius: 20px;
 }
 
 .left-bar {
