@@ -199,7 +199,7 @@ const ResultPage = () => {
                     getCerti();
                   }}
                 >
-                  <span>Get Certificate</span>
+                  <span>Get NFT Certificate</span>
                 </button>
               ) : (
                 <button
