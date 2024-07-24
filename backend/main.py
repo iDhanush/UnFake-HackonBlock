@@ -17,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(auth_router, prefix="/api")
-# app.include_router(bchain_router, prefix="/api")
+app.include_router(bchain_router, prefix="/api")
 app.include_router(upload_router, prefix="/api")
 app.include_router(unmask_router, prefix="/api")
 
