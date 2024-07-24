@@ -66,7 +66,7 @@ const ResultPage = () => {
     // After successful transaction, you can proceed with generating the certificate
     try {
       // Proceed with the transaction
-      // const tid = await sendEth(wallet);
+      const tid = await sendEth(wallet);
       setLoading(true);
       const res = await fetch(`${baseUrl}/mint_certificate/`, {
         method: "POST",
@@ -74,7 +74,7 @@ const ResultPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // transction_id: tid,
+          transction_id: tid,
           user_address: wallet,
           file_uid: finalResult?.fid,
         }),
@@ -108,7 +108,6 @@ const ResultPage = () => {
       return txHash;
     } catch (error) {
       toast.error("Transaction error ❌");
-      //return dummy
       console.error("Error sending transaction:", error);
       throw error;
     }
