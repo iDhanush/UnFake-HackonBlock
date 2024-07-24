@@ -1,22 +1,16 @@
-import base64
-import hashlib
-import math
-import random
 import re
-import string
-
 import cv2
-
-from pytube.innertube import _default_clients
-from pytube import cipher
+import math
+import base64
+import random
+import string
+import yt_dlp
+import hashlib
 
 image_extensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp']
 video_extensions = ['mp4', 'mov', 'avi', 'mkv', 'flv', 'wmv', 'm4v']
 
-from pytube import YouTube
 
-
-# pip install -U yt-dlp
 def invoke_uid(length=10, alphanumeric=True):
     char_pool = string.ascii_lowercase + string.ascii_uppercase if alphanumeric else string.digits
     uid = "".join(random.choices(char_pool, k=length))
@@ -72,8 +66,10 @@ def is_instagram_url(url):
     return any(url.startswith(base) for base in base_urls)
 
 
-def yt_downloader(url, fid):
-    yt = YouTube(url)
-    stream = yt.streams.get_by_resolution('360p')
-    print(stream)
-    stream.download(output_path=f'assets', filename=f'{fid}.mp4')
+def yt_downloader(url, file_uid):
+    ydl_opts = {
+        'format': 'bestvideo[height<=360][ext=mp4]+bestaudio[ext=m4a]/best[height<=360][ext=mp4]/best[height<=360]',
+        'outtmpl': f'assets/{file_uid}',
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
