@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from utils import invoke_uid, image_extensions, video_extensions, is_youtube_url, yt_downloader, is_instagram_url, \
-    is_twitter_url
+    is_twitter_url, insta_downloader
 
 upload_router = APIRouter(tags=['uploads'])
 
@@ -24,7 +24,7 @@ async def upload_file(client_address: str, file: UploadFile = File(...)):
 @upload_router.get("/link/{client_address:str}/upload")
 async def upload_link(client_address: str, link: str):
     print(link)
-    fid = f'{client_address}{invoke_uid()}'
+    fid = f'{client_address}_{invoke_uid()}.mp4'
     if is_youtube_url(link):
         yt_downloader(link, fid)
     elif is_instagram_url(link):
@@ -34,4 +34,4 @@ async def upload_link(client_address: str, link: str):
         return False
     else:
         return False
-    return {'id': f'{fid}.mp4'}
+    return {'id': fid}
