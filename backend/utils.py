@@ -77,8 +77,25 @@ def yt_downloader(url, file_uid):
         ydl.download([url])
 
 
-def insta_downloader():
-    res = requests.post('https://fastdl.app/api/convert', json={
-        "url": "https://www.instagram.com/reel/C8zaus6s8Qs",
+def insta_downloader(url, fid):
+    res = requests.post('https://v3.igdownloader.app/api/ajaxSearch', data={
+        'q': url,
+        't': 'media',
+        'lang': 'en',
     })
+    res = res.json()
     print(res)
+
+    data = res.get('data')
+
+    url = re.findall(r'href=[\'"]?([^\'" >]+)', data)
+    url = url[0]
+
+    response = requests.get(url)
+    file_Path = f'assets/{fid}'
+
+    if response.status_code == 200:
+        with open(file_Path, 'wb') as file:
+            file.write(response.content)
+        print('File downloaded successfully')
+    return fid
