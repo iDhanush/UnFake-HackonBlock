@@ -4,7 +4,7 @@ import warnings
 from PIL import Image
 import torch.nn.functional as F
 from fastapi import HTTPException
-from pytorch_grad_cam import GradCAM
+from pytorch_grad_cam import GradCAM 
 from facenet_pytorch import MTCNN, InceptionResnetV1
 from pytorch_grad_cam.utils.image import show_cam_on_image
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
@@ -25,6 +25,11 @@ model = InceptionResnetV1(
     num_classes=1,
     device=DEVICE
 )
+checkpoint = torch.load("unmask/resnetinceptionv1_epoch_32.pth", map_location=torch.device('cpu'))
+model.load_state_dict(checkpoint['model_state_dict'])
+model.to(DEVICE)
+model.eval()
+print('finish')
 
 
 def get_confidences(face):
